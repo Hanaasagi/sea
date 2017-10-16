@@ -1,0 +1,333 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>QuickStart &mdash; sea 0.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="genindex.html"/>
+        <link rel="search" title="Search" href="search.html"/>
+    <link rel="top" title="sea 0.3 documentation" href="index.html"/>
+        <link rel="next" title="Turtorial" href="tutorial/index.html"/>
+        <link rel="prev" title="Welcome to sea’s documentation!" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> sea
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">QuickStart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/index.html">Turtorial</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">sea</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>QuickStart</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/quickstart.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="quickstart">
+<h1>QuickStart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h1>
+<p>让我们来创建第一个项目 helloworld:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sea</span> <span class="n">new</span> <span class="n">helloworld</span>
+</pre></div>
+</div>
+<p>这条命令会自动生成以下目录及文件:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>.
+├── app
+│   ├── extensions.py
+│   ├── __init__.py
+│   ├── models.py
+│   ├── servicers.py
+│   └── tasks.py
+├── configs
+│   ├── default
+│   │   ├── celery.py
+│   │   ├── __init__.py
+│   │   └── orator.py
+│   ├── development
+│   │   └── __init__.py
+│   ├── __init__.py
+│   └── testing
+│       └── __init__.py
+├── db
+├── jobs
+│   └── __init__.py
+├── protos
+├── requirements.txt
+└── tests
+    └── __init__.py
+</pre></div>
+</div>
+<p>创建 <code class="docutils literal"><span class="pre">protos/helloworld.proto</span></code> 文件:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">syntax</span> <span class="o">=</span> <span class="s2">&quot;proto3&quot;</span><span class="p">;</span>
+
+<span class="n">package</span> <span class="n">helloworld</span><span class="p">;</span>
+
+<span class="o">//</span> <span class="n">The</span> <span class="n">greeting</span> <span class="n">service</span> <span class="n">definition</span><span class="o">.</span>
+<span class="n">service</span> <span class="n">Greeter</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">Sends</span> <span class="n">a</span> <span class="n">greeting</span>
+  <span class="n">rpc</span> <span class="n">SayHello</span> <span class="p">(</span><span class="n">HelloRequest</span><span class="p">)</span> <span class="n">returns</span> <span class="p">(</span><span class="n">HelloReply</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">The</span> <span class="n">request</span> <span class="n">message</span> <span class="n">containing</span> <span class="n">the</span> <span class="n">user</span><span class="s1">&#39;s name.</span>
+<span class="n">message</span> <span class="n">HelloRequest</span> <span class="p">{</span>
+  <span class="n">string</span> <span class="n">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="o">//</span> <span class="n">The</span> <span class="n">response</span> <span class="n">message</span> <span class="n">containing</span> <span class="n">the</span> <span class="n">greetings</span>
+<span class="n">message</span> <span class="n">HelloReply</span> <span class="p">{</span>
+  <span class="n">string</span> <span class="n">message</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>运行 <code class="docutils literal"><span class="pre">sea</span> <span class="pre">generate</span> <span class="pre">-I</span> <span class="pre">.</span> <span class="pre">helloworld.proto</span></code> 命令后, <code class="docutils literal"><span class="pre">protos</span></code> 目录下会生成 proto 文件对应的 Python 版本
+这条命令的第一个参数是 proto 文件所在的目录，第二个参数是 proto 文件的名字:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>protos
+├── helloworld_pb2_grpc.py
+└── helloworld_pb2.py
+</pre></div>
+</div>
+<p>使用下面的内容重写 <code class="docutils literal"><span class="pre">app/servicer.py</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">helloworld_pb2</span>
+<span class="kn">import</span> <span class="nn">helloworld_pb2_grpc</span>
+
+<span class="kn">from</span> <span class="nn">sea.servicer</span> <span class="k">import</span> <span class="n">ServicerMeta</span>
+
+
+<span class="k">class</span> <span class="nc">HelloworldServicer</span><span class="p">(</span><span class="n">helloworld_pb2_grpc</span><span class="o">.</span><span class="n">GreeterServicer</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ServicerMeta</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">SayHello</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">helloworld_pb2</span><span class="o">.</span><span class="n">HelloReply</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s1">&#39;Hello, </span><span class="si">%s</span><span class="s1">!&#39;</span> <span class="o">%</span> <span class="n">request</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>运行 <code class="docutils literal"><span class="pre">sea</span> <span class="pre">server</span> <span class="pre">--host</span> <span class="pre">127.0.0.1</span></code>，<code class="docutils literal"><span class="pre">host</span></code> 参数是你的发布端口，client 可以通过此端口来找到你。这样 server 就已经运行起来了</p>
+<p>然后创建 client:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">grpc</span>
+
+<span class="kn">import</span> <span class="nn">helloworld_pb2</span>
+<span class="kn">import</span> <span class="nn">helloworld_pb2_grpc</span>
+
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">():</span>
+  <span class="n">channel</span> <span class="o">=</span> <span class="n">grpc</span><span class="o">.</span><span class="n">insecure_channel</span><span class="p">(</span><span class="s1">&#39;localhost:6000&#39;</span><span class="p">)</span>
+  <span class="n">stub</span> <span class="o">=</span> <span class="n">helloworld_pb2_grpc</span><span class="o">.</span><span class="n">GreeterStub</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+  <span class="n">response</span> <span class="o">=</span> <span class="n">stub</span><span class="o">.</span><span class="n">SayHello</span><span class="p">(</span><span class="n">helloworld_pb2</span><span class="o">.</span><span class="n">HelloRequest</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;you&#39;</span><span class="p">))</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Greeter client received: &quot;</span> <span class="o">+</span> <span class="n">response</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+  <span class="n">run</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>运行这段代码，你会发现成功地收到 server 端的 echo</p>
+<blockquote>
+<div>Greeter client received: Hello, you!</div></blockquote>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tutorial/index.html" class="btn btn-neutral float-right" title="Turtorial" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Welcome to sea’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, shanbay.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

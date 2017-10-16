@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>application &mdash; sea 0.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="sea 0.3 documentation" href="../index.html"/>
+        <link rel="up" title="Turtorial" href="index.html"/>
+        <link rel="next" title="exception" href="exception.html"/>
+        <link rel="prev" title="servicer" href="servicer.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> sea
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.3
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">QuickStart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Turtorial</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">configuation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="command.html">command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="servicer.html">servicer</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exception.html">exception</a></li>
+<li class="toctree-l2"><a class="reference internal" href="extension.html">extenstion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="middleware.html">middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test.html">test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html">utilities</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">sea</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Turtorial</a> &raquo;</li>
+        
+      <li>application</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorial/application.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="application">
+<h1>application<a class="headerlink" href="#application" title="Permalink to this headline">¶</a></h1>
+<p><code class="docutils literal"><span class="pre">sea/app.py</span></code> 中的 <code class="docutils literal"><span class="pre">Sea</span></code> 类是 sea 框架的应用主体，他是在 <code class="docutils literal"><span class="pre">sea/__init__.py</span></code> 中的 <code class="docutils literal"><span class="pre">create_app</span></code> 函数被实例化的，并且通过 Python 的模块机制保证全局单例，可以通过 <cite>sea/__init__.py</cite> 的 <code class="docutils literal"><span class="pre">current_app</span></code> 函数获取此 app 对象</p>
+<p>你可以通过 app 对象获取许多有用的信息</p>
+<ul class="simple">
+<li>app.config 获取配置信息</li>
+<li>app.servicers 获取已注册的 servicers</li>
+<li>app.extensions 获取扩展</li>
+<li>app.middlewares 获取中间件</li>
+</ul>
+<p>也可以通过 <code class="docutils literal"><span class="pre">app</span></code> 实例的 <code class="docutils literal"><span class="pre">register_extension</span></code>, <code class="docutils literal"><span class="pre">register_servicer</span></code> 等方法进行启动后的动态装载</p>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="exception.html" class="btn btn-neutral float-right" title="exception" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="servicer.html" class="btn btn-neutral" title="servicer" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, shanbay.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.3',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
